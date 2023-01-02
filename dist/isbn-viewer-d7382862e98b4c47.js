@@ -607,12 +607,12 @@ function getImports() {
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbindgen_closure_wrapper4238 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 301, __wbg_adapter_18);
+    imports.wbg.__wbindgen_closure_wrapper4564 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 357, __wbg_adapter_18);
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper4293 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 322, __wbg_adapter_21);
+    imports.wbg.__wbindgen_closure_wrapper4619 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 378, __wbg_adapter_21);
         return addHeapObject(ret);
     };
 
@@ -650,7 +650,7 @@ function initSync(module) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('isbn-viewer-ef959e5e8f96edc2_bg.wasm', import.meta.url);
+        input = new URL('isbn-viewer-d7382862e98b4c47_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 

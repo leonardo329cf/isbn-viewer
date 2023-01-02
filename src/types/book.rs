@@ -1,3 +1,5 @@
+use core::fmt;
+
 use serde::{Serialize, Deserialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -29,4 +31,12 @@ pub struct Dimensions {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum Unit {
     CENTIMETER,
+}
+
+impl fmt::Display for Unit {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Unit::CENTIMETER => write!(f, "cm"),
+        }
+    }
 }

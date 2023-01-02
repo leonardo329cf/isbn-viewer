@@ -4,7 +4,7 @@ use yew::prelude::*;
 
 mod components;
 mod types;
-use components::card::Card;
+use components::card::card::Card;
 use types::book::Book;
 
 fn read_book_from_json(str: String) -> Result<Book, Box<dyn Error>> {
@@ -37,13 +37,24 @@ fn App() -> Html {
             "Frank Herbert"
         ],
         "publisher": "Editora Aleph",
-        "dimensions": null,
+        "dimensions": {
+            "width": 16,
+            "height": 23,
+            "unit": "CENTIMETER"
+        },
         "year": 2017,
         "format": "PHYSICAL",
-        "subjects": [],
         "retail_price": null,
         "cover_url": "https://covers.openlibrary.org/b/id/10376632-L.jpg",
-        "provider": "open-library"
+        "provider": "open-library",
+        "page_count": 560,
+        "subjects": [
+        "Economia",
+        "ECONOMIA",
+        "Macroeconomia",
+        "história",
+        "imperio"
+        ]
     }"#.to_string();
     let data = read_book_from_json(input);
     match data {
