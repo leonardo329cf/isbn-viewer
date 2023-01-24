@@ -17,12 +17,15 @@ fn read_book_from_json(str: String) -> Result<Book, Box<dyn Error>> {
 
 fn console_log(str: String) {
     let object = JsValue::from(str);
-    log::error!("Error: {}", object.as_string().unwrap());
+    match object.as_string() {
+        Some(s) => log::error!("Error: {}", s),
+        None => log::error!("Error: {:?}", str),
+    }
 }
 
 fn render_card(book: &Book) -> Html {
     html!{
-        <Card book = {book.clone()} />
+        <Card book = {book} />
     }
 }
 
@@ -56,13 +59,27 @@ fn App() -> Html {
         "imperio"
         ]
     }"#.to_string();
-    let data = read_book_from_json(input);
-    match data {
+    match read_book_from_json(input) {
         Ok(book) => book_list.push(book),
         Err(error) => console_log(error.to_string()),
     };
 
-    
+    match wasm_logger::init(wasm_logger::Config::default()) {
+        Ok(_) => {}
+        Err(error) => {
+            console_log(error.to_string());
+            return html! {};
+        }
+    }
+
+    match yew::Renderer::<App>::new().render() {
+        Ok(_) => {}
+        Err(error) => {
+            console_log(error.to_string());
+            return html! {};
+        }
+    }
+
     html! {
         <div>
             <div>
@@ -70,9 +87,4 @@ fn App() -> Html {
             </div>
         </div>
     }
-}
-
-fn main() {
-    wasm_logger::init(wasm_logger::Config::default());
-    yew::Renderer::<App>::new().render();
 }
